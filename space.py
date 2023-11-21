@@ -28,7 +28,7 @@ while True:
             sys.exit()
         elif evento.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
-            item = simpledialog.askstring("Space", "Digite um valor para 'Space'")
+            item = simpledialog.askstring("Space", "nome do planeta")
             print(item)
             if item is None:
                 item = "desconhecido" + str(pos)
