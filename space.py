@@ -20,6 +20,10 @@ pygame.display.set_caption("Space")
 fundo = pygame.transform.scale(fundo, tamanho)
 play_music ()
 
+branco = (255,255,255)
+font = pygame.font.Font (None, 36)
+
+
 
 while True:
     for evento in pygame.event.get():
@@ -33,7 +37,16 @@ while True:
             if item is None:
                 item = "desconhecido" + str(pos)
                 estrelas[item] = pos
+    tela.fill((branco))
     tela.blit(fundo, (0, 0))  
-    pygame.display.flip()
+    F10 = font.render ("Pressione F10 para salvar os pontos", True, branco)
+    F11 = font.render ("Pressione F11 para carregar os pontos", True, branco)
+    F12 = font.render ("Pressione F12 para deletar os pontos", True, branco)
+    tela.blit(F10, (10,10))
+    tela.blit(F11, (10,35)) #widht #height
+    tela.blit(F12, (10,60))
 
+
+
+    pygame.display.update()
     clock.tick(60)
