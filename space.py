@@ -22,9 +22,10 @@ play_music ()
 
 branco = (255,255,255)
 font = pygame.font.Font (None, 36)
-
-
-
+estrelas = {}
+f12 = False
+mensagem_renderizada = None
+posicao = 0
 while True:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
@@ -37,6 +38,15 @@ while True:
             if item is None:
                 item = "desconhecido" + str(pos)
                 estrelas[item] = pos
+            elif item != "":
+                estrelas[item] = pos
+                mensagem = f"{item}: {pos}"
+                mensagem_renderizada = font.render(mensagem, True, branco)
+        elif evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_F12:
+                f12 = True
+    if f12 :
+        pygame.quit()
     tela.fill((branco))
     tela.blit(fundo, (0, 0))  
     F10 = font.render ("Pressione F10 para salvar os pontos", True, branco)
@@ -45,7 +55,11 @@ while True:
     tela.blit(F10, (10,10))
     tela.blit(F11, (10,35)) #widht #height
     tela.blit(F12, (10,60))
-
+    for nome, posicao in estrelas.items():
+        pygame.draw.circle(tela, branco, posicao, 10)
+        texto_estrela = font.render(nome, True, branco)
+        tela.blit(texto_estrela, (posicao[0] + 20, posicao[1] - 10))
+  
 
 
     pygame.display.update()
